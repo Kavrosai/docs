@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Evidence and compliance | Kavros Docs</title>
+    <meta name="description" content="Hash-chained audit evidence, SOC 2 exports, framework packs, and incident timelines — provable, not promised.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = { theme: { extend: {
+            colors: { brand: '#3b82f6', darkbg: '#020617', darkcard: '#0f172a' },
+            fontFamily: { sans: ['Inter', 'sans-serif'], mono: ['Menlo', 'monospace'] }
+        } } }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%233b82f6' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z'></path></svg>\">
+</head>
+<body class="bg-darkbg text-slate-300 font-sans antialiased">
+
+<nav class="sticky top-0 bg-darkbg/80 backdrop-blur-md z-50 border-b border-slate-800">
+    <div class="max-w-5xl mx-auto px-6 py-4 flex items-center justify-between">
+        <a href="index.html" class="flex items-center gap-2 text-lg font-bold text-white">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-brand" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+            Kavros <span class="text-brand font-mono text-xs font-normal">Docs</span>
+        </a>
+        <div class="flex items-center gap-4 text-sm flex-wrap">
+            <a href="index.html" class="hover:text-white ">Getting Started</a>
+            <a href="workflows.html" class="hover:text-white ">Workflows</a>
+            <a href="chat.html" class="hover:text-white ">Chat</a>
+            <a href="policies.html" class="hover:text-white ">Policies</a>
+            <a href="compliance.html" class="hover:text-white ">Compliance</a>
+            <a href="deployment.html" class="hover:text-white ">Deployment</a>
+            <a href="agent.html" class="hover:text-white ">Agents</a>
+            <a href="integrations.html" class="hover:text-white ">Developer</a>
+            <a href="https://kavros.ai" class="text-slate-500 hover:text-white">kavros.ai ↗</a>
+        </div>
+    </div>
+</nav>
+
+<main class="max-w-4xl mx-auto px-6 py-16">
+    <h1 class="text-3xl md:text-4xl font-extrabold text-white mb-4">Evidence and compliance</h1>
+    <p class="text-slate-400 mb-10">Kavros treats evidence as a product: every governed decision, approval, and block lands in a tamper-evident, hash-chained audit log you can export and verify yourself.</p>
+
+<section class="mb-12">
+        <h2 class="text-xl font-bold text-white mb-4">The hash chain</h2>
+        <p class="text-sm text-slate-400 mb-4">Audit records chain cryptographically — each record's hash covers the previous one. The dashboard's audit view supports verification, and exports carry the chain so an auditor (or your script) can confirm nothing was edited or dropped after the fact.</p>
+    </section>
+
+<section class="mb-12">
+        <h2 class="text-xl font-bold text-white mb-4">SOC 2 style exports</h2>
+        <ul class="list-disc list-inside text-sm text-slate-400 space-y-2 mb-4">
+            <li>Filterable, searchable, paginated audit exports (JSON or CSV) with actor, action, timestamp, and chain hash —</li>
+            <li>policy approval timelines with proposer and approver identities,</li>
+            <li>incident timelines from creation through resolution,</li>
+            <li>enclave attestation records for protected actions.</li>
+        </ul>
+    </section>
+
+<section class="mb-12">
+        <h2 class="text-xl font-bold text-white mb-4">Framework evidence packs</h2>
+        <p class="text-sm text-slate-400 mb-4">Evidence packs assemble the artifacts a control framework asks for — access reviews, change approvals, incident handling, data-protection checks — from the records the platform already produces. They speed the conversation with your auditor; they do not, by themselves, make you compliant — the honest boundary, stated up front.</p>
+    </section>
+
+<section class="mb-12">
+        <h2 class="text-xl font-bold text-white mb-4">Executive reporting</h2>
+        <p class="text-sm text-slate-400 mb-4">The executive pack condenses the deployment's posture — agents governed, actions blocked, spend under management, incidents and their resolution — into a form you can forward without redaction work.</p>
+    </section>
+
+<section class="mb-12">
+        <h2 class="text-xl font-bold text-white mb-4">Verify it yourself</h2>
+<div class="bg-darkcard rounded-xl border border-slate-800 overflow-x-auto mb-4">
+<pre class="p-6 text-sm font-mono text-slate-300"># export from the dashboard, then check the chain locally
+kavros explain 403 --body '{"error":"Blocked by Kavros", ...}'
+# → what happened, whether anything reached the target, what to do next</pre>
+</div>
+        <p class="text-sm text-slate-400 mb-4">The same plain-language rule applies to evidence: every record should be readable by the person who has to act on it.</p>
+    </section>
+
+
+</main>
+
+<footer class="py-10 px-6 border-t border-slate-800">
+    <div class="max-w-4xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+        <p class="text-sm text-slate-500">© 2026 Kavros. All rights reserved.</p>
+        <div class="flex gap-6 text-sm">
+            <a href="index.html" class="text-slate-500 hover:text-white">Getting Started</a>
+            <a href="workflows.html" class="text-slate-500 hover:text-white">Workflows</a>
+            <a href="policies.html" class="text-slate-500 hover:text-white">Policies</a>
+            <a href="compliance.html" class="text-slate-500 hover:text-white">Compliance</a>
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>
