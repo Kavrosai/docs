@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Governed workflows | Kavros Docs</title>
+    <meta name="description" content="Build, approve, schedule, and promote Kavros workflows — every step governed, every run evidenced.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = { theme: { extend: {
+            colors: { brand: '#3b82f6', darkbg: '#020617', darkcard: '#0f172a' },
+            fontFamily: { sans: ['Inter', 'sans-serif'], mono: ['Menlo', 'monospace'] }
+        } } }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%233b82f6' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z'></path></svg>\">
+</head>
+<body class="bg-darkbg text-slate-300 font-sans antialiased">
+
+<nav class="sticky top-0 bg-darkbg/80 backdrop-blur-md z-50 border-b border-slate-800">
+    <div class="max-w-5xl mx-auto px-6 py-4 flex items-center justify-between">
+        <a href="index.html" class="flex items-center gap-2 text-lg font-bold text-white">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-brand" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+            Kavros <span class="text-brand font-mono text-xs font-normal">Docs</span>
+        </a>
+        <div class="flex items-center gap-4 text-sm flex-wrap">
+            <a href="index.html" class="hover:text-white ">Getting Started</a>
+            <a href="workflows.html" class="hover:text-white ">Workflows</a>
+            <a href="chat.html" class="hover:text-white ">Chat</a>
+            <a href="policies.html" class="hover:text-white ">Policies</a>
+            <a href="compliance.html" class="hover:text-white ">Compliance</a>
+            <a href="deployment.html" class="hover:text-white ">Deployment</a>
+            <a href="agent.html" class="hover:text-white ">Agents</a>
+            <a href="integrations.html" class="hover:text-white ">Developer</a>
+            <a href="https://kavros.ai" class="text-slate-500 hover:text-white">kavros.ai ↗</a>
+        </div>
+    </div>
+</nav>
+
+<main class="max-w-4xl mx-auto px-6 py-16">
+    <h1 class="text-3xl md:text-4xl font-extrabold text-white mb-4">Governed workflows</h1>
+    <p class="text-slate-400 mb-10">A Kavros workflow is a governed graph of steps — agent calls, skills, and file outputs — that can only run after its revision is approved and signed. Schedules, promotions, drift detection, and evidence all hang off that single revision chain.</p>
+
+<section class="mb-12">
+        <h2 class="text-xl font-bold text-white mb-4">Describe a request as a graph</h2>
+        <p class="text-sm text-slate-400 mb-4">In the dashboard's Workflows view, describe the task as a connected graph: an agent node (the registered workload that executes), a task node (the prompt), and skill nodes (typed capabilities such as a governed query or a file output). The builder validates the graph before anything can be saved — an unconnected or incomplete graph cannot be published.</p>
+        <div class="bg-darkcard border border-slate-800 rounded-lg p-4 text-sm text-slate-400 mb-4">
+            <strong class="text-white">Why a graph?</strong> Every node maps to something Kavros can govern: the agent's signed policy, the skill's typed capability, and the output channel's DLP rules. A workflow cannot request an action that no node declares.
+        </div>
+    </section>
+
+<section class="mb-12">
+        <h2 class="text-xl font-bold text-white mb-4">Publish, revise, promote</h2>
+        <ul class="list-disc list-inside text-sm text-slate-400 space-y-2 mb-4">
+            <li><strong class="text-white">Publish</strong> creates an immutable revision with a version number — running workflows always pin a revision.</li>
+            <li><strong class="text-white">Promote</strong> moves a revision between environments (for example staging → production) through an approval queue; the promotion is recorded with requester, approver, and target environment.</li>
+            <li><strong class="text-white">Drift detection</strong> flags when a deployed workflow's effective configuration no longer matches its approved revision, and remediation walks the same approval path — no silent edits.</li>
+            <li><strong class="text-white">Recovery requests</strong> cover failed or interrupted runs with their own approval trail.</li>
+        </ul>
+    </section>
+
+<section class="mb-12">
+        <h2 class="text-xl font-bold text-white mb-4">Schedules</h2>
+        <p class="text-sm text-slate-400 mb-4">Workflows can run on a schedule. Schedule claims are issued and finalized through the scheduler with alerting on missed or stuck claims, so a silently-stuck nightly job is an incident you see, not a surprise you discover.</p>
+    </section>
+
+<section class="mb-12">
+        <h2 class="text-xl font-bold text-white mb-4">Signed bundles: build here, run anywhere</h2>
+        <p class="text-sm text-slate-400 mb-4">Export a published workflow as a signed bundle — canonical JSON over the workflow revision with an Ed25519 signature from the control plane's key. Import it into another Kavros deployment, and verify it anywhere — including machines that never talk to either deployment:</p>
+<div class="bg-darkcard rounded-xl border border-slate-800 overflow-x-auto mb-4">
+<pre class="p-6 text-sm font-mono text-slate-300">kavros verify-bundle workflow.bundle.json \
+  --public-key "$KAVROS_POLICY_PUBLIC_KEY"
+# Signature valid (Ed25519, key sha256:…)
+# workflow: nightly-report  revision: 7  capabilities: db.query, file.xlsx</pre>
+</div>
+        <p class="text-sm text-slate-400 mb-4">A tampered bundle fails verification with a do-not-import warning and a non-zero exit code — wire it into CI as a promotion gate. See <a href="integrations.html" class="text-brand hover:text-white">Developer integrations</a> for the CI recipes.</p>
+    </section>
+
+<section class="mb-12">
+        <h2 class="text-xl font-bold text-white mb-4">Governed file outputs</h2>
+        <p class="text-sm text-slate-400 mb-4">Workflow steps can produce Excel, CSV, and JSON artifacts. Outputs pass the same DLP inspection as egress before they are stored, and every artifact is listed in the run's evidence trail with its download path from run history.</p>
+    </section>
+
+<section class="mb-12">
+        <h2 class="text-xl font-bold text-white mb-4">What a run leaves behind</h2>
+        <ul class="list-disc list-inside text-sm text-slate-400 space-y-2 mb-4">
+            <li>The revision and policy versions in force for every step,</li>
+            <li>per-step decisions (allowed, blocked) with plain-language reasons,</li>
+            <li>DLP scan results for outputs, and token/cost metering for the run —</li>
+            <li>all queryable from run history and exportable for audit.</li>
+        </ul>
+    </section>
+
+
+</main>
+
+<footer class="py-10 px-6 border-t border-slate-800">
+    <div class="max-w-4xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+        <p class="text-sm text-slate-500">© 2026 Kavros. All rights reserved.</p>
+        <div class="flex gap-6 text-sm">
+            <a href="index.html" class="text-slate-500 hover:text-white">Getting Started</a>
+            <a href="workflows.html" class="text-slate-500 hover:text-white">Workflows</a>
+            <a href="policies.html" class="text-slate-500 hover:text-white">Policies</a>
+            <a href="compliance.html" class="text-slate-500 hover:text-white">Compliance</a>
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,13 @@
+Add workflows, chat, policies, and compliance docs pages
+
+The docs predate most of the product: workflows, governed chat, the
+kill switch, and evidence/compliance had no pages at all. Four task-
+oriented pages cover them with the shipped platform's actual contracts
+(signed bundles, schedule claims, two-person approvals, hash-chained
+exports). Nav and footers rewired across all eight pages; the retired
+OS suffix is dropped from the footers.
+
+Part of the pre-launch batch (roadmap D9/P0).
+
+Generated with Codebuff
+Co-Authored-By: Codebuff <noreply@codebuff.com>

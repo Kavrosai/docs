@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Policies and the kill switch | Kavros Docs</title>
+    <meta name="description" content="How Kavros policy works: proposal, approval, signature, enforcement — and the halt path when you need it.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = { theme: { extend: {
+            colors: { brand: '#3b82f6', darkbg: '#020617', darkcard: '#0f172a' },
+            fontFamily: { sans: ['Inter', 'sans-serif'], mono: ['Menlo', 'monospace'] }
+        } } }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%233b82f6' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z'></path></svg>\">
+</head>
+<body class="bg-darkbg text-slate-300 font-sans antialiased">
+
+<nav class="sticky top-0 bg-darkbg/80 backdrop-blur-md z-50 border-b border-slate-800">
+    <div class="max-w-5xl mx-auto px-6 py-4 flex items-center justify-between">
+        <a href="index.html" class="flex items-center gap-2 text-lg font-bold text-white">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-brand" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+            Kavros <span class="text-brand font-mono text-xs font-normal">Docs</span>
+        </a>
+        <div class="flex items-center gap-4 text-sm flex-wrap">
+            <a href="index.html" class="hover:text-white ">Getting Started</a>
+            <a href="workflows.html" class="hover:text-white ">Workflows</a>
+            <a href="chat.html" class="hover:text-white ">Chat</a>
+            <a href="policies.html" class="hover:text-white ">Policies</a>
+            <a href="compliance.html" class="hover:text-white ">Compliance</a>
+            <a href="deployment.html" class="hover:text-white ">Deployment</a>
+            <a href="agent.html" class="hover:text-white ">Agents</a>
+            <a href="integrations.html" class="hover:text-white ">Developer</a>
+            <a href="https://kavros.ai" class="text-slate-500 hover:text-white">kavros.ai ↗</a>
+        </div>
+    </div>
+</nav>
+
+<main class="max-w-4xl mx-auto px-6 py-16">
+    <h1 class="text-3xl md:text-4xl font-extrabold text-white mb-4">Policies and the kill switch</h1>
+    <p class="text-slate-400 mb-10">Everything Kavros enforces traces back to a signed policy. This page covers the lifecycle — propose, approve, sign, enforce — and the kill switch that quarantines a workload instantly.</p>
+
+<section class="mb-12">
+        <h2 class="text-xl font-bold text-white mb-4">Two-person approval by default</h2>
+        <p class="text-sm text-slate-400 mb-4">A policy change starts as a <strong class="text-white">proposal</strong> (org admin or automation), and only takes effect after <strong class="text-white">approval and signing</strong> by a super admin. The approver sees a diff against the current policy. Every proposal, approval, signer, and timestamp is recorded in the policy event timeline.</p>
+    </section>
+
+<section class="mb-12">
+        <h2 class="text-xl font-bold text-white mb-4">Signed, then enforced</h2>
+        <ul class="list-disc list-inside text-sm text-slate-400 space-y-2 mb-4">
+            <li>Approved policies are <strong class="text-white">Ed25519-signed</strong> by the control plane's key; the enclave verifies the signature before enforcing a runtime policy — an unsigned or wrongly-signed policy is never enforced.</li>
+            <li>The policy signing key's fingerprint is visible in the dashboard and in <code class="font-mono text-brand">kavros doctor</code>, so you can verify what is enforcing your requests.</li>
+            <li><strong class="text-white">Dry-run simulation</strong> shows what a proposed policy would have blocked or allowed against recent traffic, before you approve it.</li>
+            <li><strong class="text-white">Version history</strong> keeps every revision with diff and rollback.</li>
+        </ul>
+    </section>
+
+<section class="mb-12">
+        <h2 class="text-xl font-bold text-white mb-4">Tamper resistance</h2>
+        <p class="text-sm text-slate-400 mb-4">The baked policy is measured into the enclave's PCR0: tampering changes the measurement and the platform refuses to attest it. Runtime policies only flow to the enclave over a signed fetch — a rogue insider cannot add an allowlist entry by editing a file.</p>
+    </section>
+
+<section class="mb-12">
+        <h2 class="text-xl font-bold text-white mb-4">The kill switch</h2>
+        <p class="text-sm text-slate-400 mb-4">Halting a workload sets it to <strong class="text-white">QUARANTINED</strong>. The data plane blocks egress immediately — the agent receives a plain-language block with the real reason — and a <strong class="text-white">critical incident</strong> appears in the Task Inbox with the halt reason and actor. Resuming returns the workload to ACTIVE and resolves the incident. Both actions are hash-chained in the audit log.</p>
+        <div class="bg-darkcard border border-slate-800 rounded-lg p-4 text-sm text-slate-400 mb-4">
+            <strong class="text-white">What halt is not:</strong> it is not a quota event and not a revocation. Quota exhaustion and admin halts produce different, honest block reasons on the wire.
+        </div>
+    </section>
+
+<section class="mb-12">
+        <h2 class="text-xl font-bold text-white mb-4">Revocation</h2>
+        <p class="text-sm text-slate-400 mb-4">Revoking a workload identity retires its key: the agent cannot authenticate at all. Halt is the reversible operational switch; revocation is the permanent one.</p>
+    </section>
+
+
+</main>
+
+<footer class="py-10 px-6 border-t border-slate-800">
+    <div class="max-w-4xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+        <p class="text-sm text-slate-500">© 2026 Kavros. All rights reserved.</p>
+        <div class="flex gap-6 text-sm">
+            <a href="index.html" class="text-slate-500 hover:text-white">Getting Started</a>
+            <a href="workflows.html" class="text-slate-500 hover:text-white">Workflows</a>
+            <a href="policies.html" class="text-slate-500 hover:text-white">Policies</a>
+            <a href="compliance.html" class="text-slate-500 hover:text-white">Compliance</a>
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>
