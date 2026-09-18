@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Developer Integrations | Enclavia Docs</title>
-    <meta name="description" content="Integrate any language with Enclavia — CLI, native HTTP, Python hook, CI recipes, and local bundle verification.">
+    <title>Developer Integrations | Kavros Docs</title>
+    <meta name="description" content="Integrate any language with Kavros — CLI, native HTTP, Python hook, CI recipes, and local bundle verification.">
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = { theme: { extend: {
@@ -21,15 +21,15 @@
     <div class="max-w-5xl mx-auto px-6 py-4 flex items-center justify-between">
         <a href="index.html" class="flex items-center gap-2 text-lg font-bold text-white">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-brand" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
-            Enclavia <span class="text-brand font-mono text-xs font-normal">Docs</span>
+            Kavros <span class="text-brand font-mono text-xs font-normal">Docs</span>
         </a>
         <div class="flex items-center gap-5 text-sm">
             <a href="index.html" class="hover:text-white">Getting Started</a>
             <a href="deployment.html" class="hover:text-white">Deployment</a>
             <a href="agent.html" class="hover:text-white">Agent Integration</a>
             <a href="integrations.html" class="text-brand font-bold">Developer</a>
-            <a href="https://www.enclavia.xyz/security.html" class="hover:text-white">Security</a>
-            <a href="https://www.enclavia.xyz" class="text-slate-500 hover:text-white">enclavia.xyz ↗</a>
+            <a href="https://kavros.ai/security.html" class="hover:text-white">Security</a>
+            <a href="https://kavros.ai" class="text-slate-500 hover:text-white">kavros.ai ↗</a>
         </div>
     </div>
 </nav>
@@ -43,30 +43,30 @@
         <h2 class="text-xl font-bold text-white mb-4">Workload credentials</h2>
         <p class="text-sm text-slate-400 mb-4">Every path below authenticates as a registered workload. Register one in the dashboard (<span class="text-slate-300">Agents → Register</span>), then export:</p>
         <div class="bg-darkcard rounded-xl border border-slate-800 overflow-x-auto">
-<pre class="p-6 text-sm font-mono text-slate-300">export ENCLAVIA_API_URL="https://&lt;data-plane-host&gt;/api/agent/egress"
-export ENCLAVIA_API_KEY="&lt;workload-api-key&gt;"
-export ENCLAVIA_AGENT_ID="&lt;workload-id&gt;"</pre>
+<pre class="p-6 text-sm font-mono text-slate-300">export KAVROS_API_URL="https://&lt;data-plane-host&gt;/api/agent/egress"
+export KAVROS_API_KEY="&lt;workload-api-key&gt;"
+export KAVROS_AGENT_ID="&lt;workload-id&gt;"</pre>
         </div>
     </section>
 
     <section class="mb-12">
-        <h2 class="text-xl font-bold text-white mb-4">CLI: <span class="font-mono text-brand">@enclavia-os/cli</span></h2>
+        <h2 class="text-xl font-bold text-white mb-4">CLI: <span class="font-mono text-brand">@kavrosai/cli</span></h2>
         <p class="text-sm text-slate-400 mb-4">Zero runtime dependencies, Node 18+. The fastest way from an empty shell to proof that governance works.</p>
         <div class="bg-darkcard rounded-xl border border-slate-800 overflow-x-auto">
-<pre class="p-6 text-sm font-mono text-slate-300">npx @enclavia-os/cli doctor          # connectivity + identity check
+<pre class="p-6 text-sm font-mono text-slate-300">npx @kavrosai/cli doctor          # connectivity + identity check
 
-enclavia request --action get \
+kavros request --action get \
   --target "https://docs.example.com" --json
 
-enclavia help request                # per-command options</pre>
+kavros help request                # per-command options</pre>
         </div>
         <div class="grid md:grid-cols-2 gap-4 mt-6">
             <div class="bg-darkcard rounded-xl border border-slate-800 p-5">
                 <h3 class="font-bold text-white text-sm mb-2">Understand any failure</h3>
                 <p class="text-xs text-slate-400 mb-3">Blocked requests print what happened, whether content left your network (blocked requests never do), and what to do next — the same explanation is available standalone:</p>
                 <div class="rounded-lg border border-slate-800 overflow-x-auto">
-<pre class="p-4 text-xs font-mono text-slate-300">enclavia explain 403 --body \
-  '{"error":"Blocked by Enclavia",
+<pre class="p-4 text-xs font-mono text-slate-300">kavros explain 403 --body \
+  '{"error":"Blocked by Kavros",
     "reason":"target not in allowlist"}'</pre>
                 </div>
             </div>
@@ -74,7 +74,7 @@ enclavia help request                # per-command options</pre>
                 <h3 class="font-bold text-white text-sm mb-2">Verify a signed bundle locally</h3>
                 <p class="text-xs text-slate-400 mb-3">Before importing a workflow bundle from another deployment, verify its Ed25519 signature offline — the same check the import route performs:</p>
                 <div class="rounded-lg border border-slate-800 overflow-x-auto">
-<pre class="p-4 text-xs font-mono text-slate-300">enclavia verify-bundle workflow.enclavia-bundle.json \
+<pre class="p-4 text-xs font-mono text-slate-300">kavros verify-bundle workflow.kavros-bundle.json \
   --public-key "$CP_POLICY_PUBLIC_KEY"</pre>
                 </div>
             </div>
@@ -87,9 +87,9 @@ enclavia help request                # per-command options</pre>
         <p class="text-sm text-slate-400 mb-4">The CLI is a convenience — the product contract is this JSON request. Go, Rust, Java, Ruby, Python, or anything that speaks HTTP:</p>
         <div class="bg-darkcard rounded-xl border border-slate-800 overflow-x-auto">
 <pre class="p-6 text-sm font-mono text-slate-300">curl --fail-with-body --silent --show-error \
-  --request POST "$ENCLAVIA_API_URL" \
-  --header "Authorization: Bearer $ENCLAVIA_API_KEY" \
-  --header "X-Enclavia-Agent-ID: $ENCLAVIA_AGENT_ID" \
+  --request POST "$KAVROS_API_URL" \
+  --header "Authorization: Bearer $KAVROS_API_KEY" \
+  --header "X-Kavros-Agent-ID: $KAVROS_AGENT_ID" \
   --header "Content-Type: application/json" \
   --data '{
     "action": "post_data",
@@ -98,18 +98,18 @@ enclavia help request                # per-command options</pre>
     "headers": {"content-type": "application/json"}
   }'</pre>
         </div>
-        <p class="text-xs text-slate-500 mt-3">Blocks return HTTP 403 with <code class="font-mono text-brand">{"error":"Blocked by Enclavia","reason":"…","logs":[…]}</code>. Read <code class="font-mono text-brand">reason</code>, not the first log line. See <a href="agent.html" class="text-brand hover:underline">Agent Integration</a> for the full contract.</p>
+        <p class="text-xs text-slate-500 mt-3">Blocks return HTTP 403 with <code class="font-mono text-brand">{"error":"Blocked by Kavros","reason":"…","logs":[…]}</code>. Read <code class="font-mono text-brand">reason</code>, not the first log line. See <a href="agent.html" class="text-brand hover:underline">Agent Integration</a> for the full contract.</p>
     </section>
 
     <section class="mb-12">
         <h2 class="text-xl font-bold text-white mb-4">Python zero-code hook</h2>
-        <p class="text-sm text-slate-400 mb-4"><code class="font-mono text-brand">enclavia-agent</code> patches <code class="font-mono text-brand">requests</code> and <code class="font-mono text-brand">httpx</code> at interpreter startup — Anthropic/OpenAI SDK calls are routed through governance with no code changes:</p>
+        <p class="text-sm text-slate-400 mb-4"><code class="font-mono text-brand">kavros-agent</code> patches <code class="font-mono text-brand">requests</code> and <code class="font-mono text-brand">httpx</code> at interpreter startup — Anthropic/OpenAI SDK calls are routed through governance with no code changes:</p>
         <div class="bg-darkcard rounded-xl border border-slate-800 overflow-x-auto">
-<pre class="p-6 text-sm font-mono text-slate-300">python -m pip install enclavia-agent
-export ENCLAVIA_API_URL=… ENCLAVIA_API_KEY=… ENCLAVIA_AGENT_ID=…
+<pre class="p-6 text-sm font-mono text-slate-300">python -m pip install kavros-agent
+export KAVROS_API_URL=… KAVROS_API_KEY=… KAVROS_AGENT_ID=…
 python app.py   # traffic now flows through the data plane</pre>
         </div>
-        <p class="text-xs text-slate-500 mt-3">The hook is a no-op when Enclavia variables are absent, so installing the wheel never affects unconfigured processes.</p>
+        <p class="text-xs text-slate-500 mt-3">The hook is a no-op when Kavros variables are absent, so installing the wheel never affects unconfigured processes.</p>
     </section>
 
     <section class="mb-12">
@@ -125,21 +125,21 @@ jobs:
     runs-on: ubuntu-latest   # must reach the data plane (self-hosted runner in VPC deployments)
     steps:
       - name: Install CLI
-        run: npm install --global @enclavia-os/cli
+        run: npm install --global @kavrosai/cli
 
       - name: Connectivity and identity
-        run: enclavia doctor
+        run: kavros doctor
         env:
-          ENCLAVIA_API_URL:  ${{ secrets.ENCLAVIA_API_URL }}
-          ENCLAVIA_API_KEY:  ${{ secrets.ENCLAVIA_API_KEY }}
-          ENCLAVIA_AGENT_ID: ${{ secrets.ENCLAVIA_AGENT_ID }}
+          KAVROS_API_URL:  ${{ secrets.KAVROS_API_URL }}
+          KAVROS_API_KEY:  ${{ secrets.KAVROS_API_KEY }}
+          KAVROS_AGENT_ID: ${{ secrets.KAVROS_AGENT_ID }}
 
       - name: Allowed request succeeds
-        run: enclavia request --action get --target "$APPROVED_TARGET" --json &gt;/dev/null
+        run: kavros request --action get --target "$APPROVED_TARGET" --json &gt;/dev/null
 
       - name: Forbidden request is blocked (policy is in the path)
         run: |
-          if enclavia request --action get --target "$FORBIDDEN_TARGET" &gt;/dev/null 2&gt;&1; then
+          if kavros request --action get --target "$FORBIDDEN_TARGET" &gt;/dev/null 2&gt;&1; then
             echo "::error::Policy did not block a forbidden target — check the data plane path."
             exit 1
           else
@@ -148,7 +148,7 @@ jobs:
         env:
           FORBIDDEN_TARGET: "https://nonapproved.example.internal"</pre>
         </div>
-        <p class="text-xs text-slate-500 mt-3">GitLab CI: the same three steps in <code class="font-mono text-brand">.gitlab-ci.yml</code> under a <code class="font-mono text-brand">governance</code> stage. For pipeline-level bundle promotion, run <code class="font-mono text-brand">enclavia verify-bundle</code> before any import step and fail the job on a non-zero exit.</p>
+        <p class="text-xs text-slate-500 mt-3">GitLab CI: the same three steps in <code class="font-mono text-brand">.gitlab-ci.yml</code> under a <code class="font-mono text-brand">governance</code> stage. For pipeline-level bundle promotion, run <code class="font-mono text-brand">kavros verify-bundle</code> before any import step and fail the job on a non-zero exit.</p>
     </section>
 
     <section class="mb-12">
@@ -157,7 +157,7 @@ jobs:
         <div class="bg-darkcard rounded-xl border border-slate-800 overflow-x-auto">
 <pre class="p-6 text-sm font-mono text-slate-300"># on staging (dashboard): Workflows → Export bundle
 # in production's pipeline, before import:
-enclavia verify-bundle nightly-report.enclavia-bundle.json \
+kavros verify-bundle nightly-report.kavros-bundle.json \
   --public-key "$CP_POLICY_PUBLIC_KEY" --json
 # → "Signature valid" names workflow, revision, capabilities, key fingerprint
 # only then: dashboard → Workflows → Import bundle</pre>
@@ -167,20 +167,20 @@ enclavia verify-bundle nightly-report.enclavia-bundle.json \
     <section>
         <h2 class="text-xl font-bold text-white mb-4">Troubleshooting quick reference</h2>
         <div class="bg-darkcard rounded-xl border border-slate-800 divide-y divide-slate-800 text-sm">
-            <div class="p-4"><span class="font-mono text-brand text-xs">HTTP 403 · "Blocked by Enclavia"</span><p class="text-xs text-slate-400 mt-1">A governed denial, not a malfunction. The named rule decided the outcome; content never left. Ask your admin to change policy if the target is legitimate.</p></div>
+            <div class="p-4"><span class="font-mono text-brand text-xs">HTTP 403 · "Blocked by Kavros"</span><p class="text-xs text-slate-400 mt-1">A governed denial, not a malfunction. The named rule decided the outcome; content never left. Ask your admin to change policy if the target is legitimate.</p></div>
             <div class="p-4"><span class="font-mono text-brand text-xs">HTTP 401/403 without the block body</span><p class="text-xs text-slate-400 mt-1">Identity rejected before policy evaluation: key/ID mismatch, rotated key, or halted workload (see the Agent Registry).</p></div>
             <div class="p-4"><span class="font-mono text-brand text-xs">HTTP 429</span><p class="text-xs text-slate-400 mt-1">Quota exhausted. The request was refused at the data plane; an admin can see which workload is consuming budget in Usage.</p></div>
             <div class="p-4"><span class="font-mono text-brand text-xs">HTTP 502/504</span><p class="text-xs text-slate-400 mt-1">Policy checks passed; the approved target itself failed after egress. Target-side, not policy-side.</p></div>
-            <div class="p-4"><span class="font-mono text-brand text-xs">Connection refused / timeout</span><p class="text-xs text-slate-400 mt-1">The workload network cannot reach the data plane, or ENCLAVIA_API_URL points at the control plane UI instead of <span class="font-mono">/api/agent/egress</span>.</p></div>
+            <div class="p-4"><span class="font-mono text-brand text-xs">Connection refused / timeout</span><p class="text-xs text-slate-400 mt-1">The workload network cannot reach the data plane, or KAVROS_API_URL points at the control plane UI instead of <span class="font-mono">/api/agent/egress</span>.</p></div>
         </div>
-        <p class="text-xs text-slate-500 mt-4">Run <code class="font-mono text-brand">enclavia explain &lt;status&gt;</code> for this guidance from your terminal.</p>
+        <p class="text-xs text-slate-500 mt-4">Run <code class="font-mono text-brand">kavros explain &lt;status&gt;</code> for this guidance from your terminal.</p>
     </section>
 
 </main>
 
 <footer class="py-10 px-6 border-t border-slate-800">
     <div class="max-w-4xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
-        <p class="text-sm text-slate-500">© 2026 Enclavia OS. All rights reserved.</p>
+        <p class="text-sm text-slate-500">© 2026 Kavros OS. All rights reserved.</p>
         <div class="flex gap-6 text-sm">
             <a href="index.html" class="text-slate-500 hover:text-white">Getting Started</a>
             <a href="deployment.html" class="text-slate-500 hover:text-white">Deployment</a>

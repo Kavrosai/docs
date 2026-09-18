@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Agent Integration | Enclavia Docs</title>
-    <meta name="description" content="Integrate your agents with Enclavia — no code changes required.">
+    <title>Agent Integration | Kavros Docs</title>
+    <meta name="description" content="Integrate your agents with Kavros — no code changes required.">
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = { theme: { extend: {
@@ -21,15 +21,15 @@
     <div class="max-w-5xl mx-auto px-6 py-4 flex items-center justify-between">
         <a href="index.html" class="flex items-center gap-2 text-lg font-bold text-white">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-brand" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
-            Enclavia <span class="text-brand font-mono text-xs font-normal">Docs</span>
+            Kavros <span class="text-brand font-mono text-xs font-normal">Docs</span>
         </a>
         <div class="flex items-center gap-5 text-sm">
             <a href="index.html" class="hover:text-white">Getting Started</a>
             <a href="deployment.html" class="hover:text-white">Deployment</a>
             <a href="agent.html" class="text-brand font-bold">Agent Integration</a>
             <a href="integrations.html" class="hover:text-white">Developer</a>
-            <a href="https://www.enclavia.xyz/security.html" class="hover:text-white">Security</a>
-            <a href="https://www.enclavia.xyz" class="text-slate-500 hover:text-white">enclavia.xyz ↗</a>
+            <a href="https://kavros.ai/security.html" class="hover:text-white">Security</a>
+            <a href="https://kavros.ai" class="text-slate-500 hover:text-white">kavros.ai ↗</a>
         </div>
     </div>
 </nav>
@@ -37,33 +37,33 @@
 <main class="max-w-4xl mx-auto px-6 py-16">
 
     <h1 class="text-3xl md:text-4xl font-extrabold text-white mb-4">Agent integration</h1>
-    <p class="text-slate-400 mb-10">Enclavia is an egress proxy. Your agent keeps its existing logic and SDKs; choose the CLI, native HTTP contract, or Python auto-hook that fits your runtime.</p>
+    <p class="text-slate-400 mb-10">Kavros is an egress proxy. Your agent keeps its existing logic and SDKs; choose the CLI, native HTTP contract, or Python auto-hook that fits your runtime.</p>
 
     <section class="mb-12">
         <h2 class="text-xl font-bold text-white mb-4">Configure workload credentials</h2>
         <p class="text-sm text-slate-400 mb-4">Register an AI Agent workload in the dashboard, then keep its API key in your secret manager. New clients authenticate with headers rather than putting credentials in the URL.</p>
         <div class="bg-darkcard rounded-xl border border-slate-800 overflow-x-auto">
-<pre class="p-6 text-sm font-mono text-slate-300">export ENCLAVIA_API_URL="https://&lt;data-plane-host&gt;/api/agent/egress"
-export ENCLAVIA_API_KEY="&lt;workload-api-key&gt;"
-export ENCLAVIA_AGENT_ID="&lt;workload-id&gt;"</pre>
+<pre class="p-6 text-sm font-mono text-slate-300">export KAVROS_API_URL="https://&lt;data-plane-host&gt;/api/agent/egress"
+export KAVROS_API_KEY="&lt;workload-api-key&gt;"
+export KAVROS_AGENT_ID="&lt;workload-id&gt;"</pre>
         </div>
     </section>
 
     <section class="mb-12">
         <h2 class="text-xl font-bold text-white mb-4">Node.js CLI</h2>
-        <p class="text-sm text-slate-400 mb-4">Use the dependency-free <code class="font-mono text-brand">@enclavia-os/cli</code> for smoke tests, scripts, jobs, or any workflow that does not need a native SDK.</p>
+        <p class="text-sm text-slate-400 mb-4">Use the dependency-free <code class="font-mono text-brand">@kavrosai/cli</code> for smoke tests, scripts, jobs, or any workflow that does not need a native SDK.</p>
         <div class="bg-darkcard rounded-xl border border-slate-800 overflow-x-auto">
-<pre class="p-6 text-sm font-mono text-slate-300">npm install --global @enclavia-os/cli
-enclavia doctor
+<pre class="p-6 text-sm font-mono text-slate-300">npm install --global @kavrosai/cli
+kavros doctor
 
-enclavia request \
+kavros request \
   --action post_data \
   --target "https://api.example.com/v1/run" \
   --content '{"input":"hello"}' \
   --header 'content-type:application/json' \
   --json</pre>
         </div>
-        <p class="text-xs text-slate-500 mt-3">For one-off use, replace the global install with <code class="font-mono text-brand">npx @enclavia-os/cli doctor</code>.</p>
+        <p class="text-xs text-slate-500 mt-3">For one-off use, replace the global install with <code class="font-mono text-brand">npx @kavrosai/cli doctor</code>.</p>
     </section>
 
     <section class="mb-12">
@@ -71,9 +71,9 @@ enclavia request \
         <p class="text-sm text-slate-400 mb-4">The same JSON contract works from Go, Rust, Java, Ruby, TypeScript, or any HTTP client. Send the workload credentials as headers:</p>
         <div class="bg-darkcard rounded-xl border border-slate-800 overflow-x-auto">
 <pre class="p-6 text-sm font-mono text-slate-300">curl --fail-with-body --silent --show-error \
-  --request POST "$ENCLAVIA_API_URL" \
-  --header "Authorization: Bearer $ENCLAVIA_API_KEY" \
-  --header "X-Enclavia-Agent-ID: $ENCLAVIA_AGENT_ID" \
+  --request POST "$KAVROS_API_URL" \
+  --header "Authorization: Bearer $KAVROS_API_KEY" \
+  --header "X-Kavros-Agent-ID: $KAVROS_AGENT_ID" \
   --header "Content-Type: application/json" \
   --data '{
     "action": "post_data",
@@ -87,12 +87,12 @@ enclavia request \
 
     <section class="mb-12">
         <h2 class="text-xl font-bold text-white mb-4">Python zero-code hook</h2>
-        <p class="text-sm text-slate-400 mb-4">The optional <code class="font-mono text-brand">enclavia-agent</code> wheel patches <code class="font-mono text-brand">requests</code> and <code class="font-mono text-brand">httpx</code> at startup, covering Anthropic/OpenAI SDKs and plain HTTP clients without application code changes.</p>
+        <p class="text-sm text-slate-400 mb-4">The optional <code class="font-mono text-brand">kavros-agent</code> wheel patches <code class="font-mono text-brand">requests</code> and <code class="font-mono text-brand">httpx</code> at startup, covering Anthropic/OpenAI SDKs and plain HTTP clients without application code changes.</p>
         <div class="bg-darkcard rounded-xl border border-slate-800 overflow-x-auto">
-<pre class="p-6 text-sm font-mono text-slate-300">python -m pip install enclavia-agent
+<pre class="p-6 text-sm font-mono text-slate-300">python -m pip install kavros-agent
 python app.py</pre>
         </div>
-        <p class="text-xs text-slate-500 mt-3">The hook is a no-op unless the Enclavia environment variables are set. See the native HTTP path above for other runtimes.</p>
+        <p class="text-xs text-slate-500 mt-3">The hook is a no-op unless the Kavros environment variables are set. See the native HTTP path above for other runtimes.</p>
     </section>
 
     <section>
@@ -107,7 +107,7 @@ python app.py</pre>
 
 <footer class="py-10 px-6 border-t border-slate-800">
     <div class="max-w-4xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
-        <p class="text-sm text-slate-500">© 2026 Enclavia OS. All rights reserved.</p>
+        <p class="text-sm text-slate-500">© 2026 Kavros OS. All rights reserved.</p>
         <div class="flex gap-6 text-sm">
             <a href="index.html" class="text-slate-500 hover:text-white">Getting Started</a>
             <a href="deployment.html" class="text-slate-500 hover:text-white">Deployment</a>

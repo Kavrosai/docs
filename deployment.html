@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Deployment | Enclavia Docs</title>
-    <meta name="description" content="Deploy the Enclavia control plane and data plane in your AWS VPC.">
+    <title>Deployment | Kavros Docs</title>
+    <meta name="description" content="Deploy the Kavros control plane and data plane in your AWS VPC.">
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = { theme: { extend: {
@@ -21,15 +21,15 @@
     <div class="max-w-5xl mx-auto px-6 py-4 flex items-center justify-between">
         <a href="index.html" class="flex items-center gap-2 text-lg font-bold text-white">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-brand" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
-            Enclavia <span class="text-brand font-mono text-xs font-normal">Docs</span>
+            Kavros <span class="text-brand font-mono text-xs font-normal">Docs</span>
         </a>
         <div class="flex items-center gap-5 text-sm">
             <a href="index.html" class="hover:text-white">Getting Started</a>
             <a href="deployment.html" class="text-brand font-bold">Deployment</a>
             <a href="agent.html" class="hover:text-white">Agent Integration</a>
             <a href="integrations.html" class="hover:text-white">Developer</a>
-            <a href="https://www.enclavia.xyz/security.html" class="hover:text-white">Security</a>
-            <a href="https://www.enclavia.xyz" class="text-slate-500 hover:text-white">enclavia.xyz ↗</a>
+            <a href="https://kavros.ai/security.html" class="hover:text-white">Security</a>
+            <a href="https://kavros.ai" class="text-slate-500 hover:text-white">kavros.ai ↗</a>
         </div>
     </div>
 </nav>
@@ -46,16 +46,16 @@
             <li>A VPC with subnets for the control plane, data plane, and database.</li>
             <li><code class="font-mono text-brand">terraform</code> ≥ 1.5 and AWS credentials.</li>
             <li>An SSH key pair for the two hosts.</li>
-            <li>A DNS name for the dashboard (e.g. <code class="font-mono text-brand">enclavia.acme.com</code>).</li>
+            <li>A DNS name for the dashboard (e.g. <code class="font-mono text-brand">kavros.acme.com</code>).</li>
         </ul>
     </section>
 
     <section class="mb-12">
         <h2 class="text-xl font-bold text-white mb-4">2 · Provision with Terraform</h2>
-        <p class="text-sm text-slate-400 mb-4">The Enclavia Terraform module provisions RDS, the control plane host, the Nitro data plane host, security groups, and IAM. Fill in the required inputs and apply.</p>
+        <p class="text-sm text-slate-400 mb-4">The Kavros Terraform module provisions RDS, the control plane host, the Nitro data plane host, security groups, and IAM. Fill in the required inputs and apply.</p>
         <div class="bg-darkcard rounded-xl border border-slate-800 overflow-x-auto">
-<pre class="p-6 text-sm font-mono text-slate-300">module "enclavia" {
-  source = "./terraform/enclavia"
+<pre class="p-6 text-sm font-mono text-slate-300">module "kavros" {
+  source = "./terraform/kavros"
 
   region                  = "us-east-1"
   vpc_id                  = "vpc-xxxx"
@@ -64,9 +64,9 @@
   db_subnet_ids           = ["subnet-a", "subnet-b"]
   key_name                = "my-keypair"
 
-  db_username               = "enclavia"
+  db_username               = "kavros"
   db_password               = var.db_password
-  dashboard_domain          = "enclavia.acme.com"
+  dashboard_domain          = "kavros.acme.com"
   nexauth_secret            = var.nexauth_secret
   control_plane_service_token = var.service_token
   policy_signing_private_key  = var.signing_private_key
@@ -81,8 +81,8 @@
         <p class="text-sm text-slate-400 mb-3">Runtime policy changes are only enforced when signed by an Ed25519 keypair. Choose one custody model before onboarding:</p>
         <div class="grid md:grid-cols-2 gap-4">
             <div class="bg-darkcard p-5 rounded-xl border border-slate-800">
-                <h3 class="font-bold text-white mb-1">Enclavia-held (default)</h3>
-                <p class="text-xs text-slate-400">Enclavia keeps the private key. Every policy change still requires an Enclavia super-admin approval, preserving the "rogue insider cannot forge an allowlist" guarantee.</p>
+                <h3 class="font-bold text-white mb-1">Kavros-held (default)</h3>
+                <p class="text-xs text-slate-400">Kavros keeps the private key. Every policy change still requires an Kavros super-admin approval, preserving the "rogue insider cannot forge an allowlist" guarantee.</p>
             </div>
             <div class="bg-darkcard p-5 rounded-xl border border-slate-800">
                 <h3 class="font-bold text-white mb-1">Customer-held</h3>
@@ -121,7 +121,7 @@
 
 <footer class="py-10 px-6 border-t border-slate-800">
     <div class="max-w-4xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
-        <p class="text-sm text-slate-500">© 2026 Enclavia OS. All rights reserved.</p>
+        <p class="text-sm text-slate-500">© 2026 Kavros OS. All rights reserved.</p>
         <div class="flex gap-6 text-sm">
             <a href="index.html" class="text-slate-500 hover:text-white">Getting Started</a>
             <a href="agent.html" class="text-slate-500 hover:text-white">Agent Integration</a>

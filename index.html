@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Getting Started | Enclavia Docs</title>
-    <meta name="description" content="The minimum changes required to run Enclavia in your VPC and secure your AI agents.">
+    <title>Getting Started | Kavros Docs</title>
+    <meta name="description" content="The minimum changes required to run Kavros in your VPC and secure your AI agents.">
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = { theme: { extend: {
@@ -21,22 +21,22 @@
     <div class="max-w-5xl mx-auto px-6 py-4 flex items-center justify-between">
         <a href="index.html" class="flex items-center gap-2 text-lg font-bold text-white">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-brand" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
-            Enclavia <span class="text-brand font-mono text-xs font-normal">Docs</span>
+            Kavros <span class="text-brand font-mono text-xs font-normal">Docs</span>
         </a>
         <div class="flex items-center gap-5 text-sm">
             <a href="index.html" class="text-brand font-bold">Getting Started</a>
             <a href="deployment.html" class="hover:text-white">Deployment</a>
             <a href="agent.html" class="hover:text-white">Agent Integration</a>
             <a href="integrations.html" class="hover:text-white">Developer</a>
-            <a href="https://www.enclavia.xyz/security.html" class="hover:text-white">Security</a>
-            <a href="https://www.enclavia.xyz" class="text-slate-500 hover:text-white">enclavia.xyz ↗</a>
+            <a href="https://kavros.ai/security.html" class="hover:text-white">Security</a>
+            <a href="https://kavros.ai" class="text-slate-500 hover:text-white">kavros.ai ↗</a>
         </div>
     </div>
 </nav>
 
 <header class="py-20 px-6 text-center border-b border-slate-800">
     <span class="inline-block bg-slate-800 text-brand text-xs font-mono px-3 py-1 rounded-full mb-6 border border-slate-700">Self-hosted · Your VPC</span>
-    <h1 class="text-4xl md:text-5xl font-extrabold text-white mb-4">Run Enclavia in your VPC</h1>
+    <h1 class="text-4xl md:text-5xl font-extrabold text-white mb-4">Run Kavros in your VPC</h1>
     <p class="text-lg text-slate-400 max-w-2xl mx-auto">Hardware-enforced egress security for your AI agents. The entire stack runs inside your AWS account — and your agents need <strong class="text-white">no code changes</strong>.</p>
 </header>
 
@@ -54,7 +54,7 @@
             <div class="bg-darkcard p-6 rounded-xl border border-slate-800">
                 <div class="text-brand font-mono text-xs mb-3">2 · Per agent</div>
                 <h3 class="font-bold text-white mb-2">Choose an integration</h3>
-                <p class="text-sm text-slate-400">Use <code class="font-mono text-brand">@enclavia-os/cli</code> for scripts, the JSON HTTP contract from any language, or the optional Python hook for zero-code interception.</p>
+                <p class="text-sm text-slate-400">Use <code class="font-mono text-brand">@kavrosai/cli</code> for scripts, the JSON HTTP contract from any language, or the optional Python hook for zero-code interception.</p>
                 <a href="agent.html" class="inline-block mt-4 text-sm text-brand hover:underline">Agent integration →</a>
                 <a href="integrations.html" class="inline-block mt-4 text-sm text-brand hover:underline">Developer integrations →</a>
             </div>
@@ -73,16 +73,16 @@
 terraform apply
 
 <span class="text-slate-500"># 2. Configure workload credentials</span>
-export ENCLAVIA_API_URL="https://&lt;data-plane-host&gt;/api/agent/egress"
-export ENCLAVIA_API_KEY="&lt;workload-api-key&gt;"
-export ENCLAVIA_AGENT_ID="&lt;workload-id&gt;"
+export KAVROS_API_URL="https://&lt;data-plane-host&gt;/api/agent/egress"
+export KAVROS_API_KEY="&lt;workload-api-key&gt;"
+export KAVROS_AGENT_ID="&lt;workload-id&gt;"
 
 <span class="text-slate-500"># 3. Choose a client</span>
-npm install --global @enclavia-os/cli
-enclavia doctor
+npm install --global @kavrosai/cli
+kavros doctor
 
 <span class="text-slate-500"># Or use the Python zero-code hook</span>
-python -m pip install enclavia-agent</pre>
+python -m pip install kavros-agent</pre>
         </div>
     </section>
 
@@ -92,7 +92,7 @@ python -m pip install enclavia-agent</pre>
             <ul class="list-disc list-inside text-sm text-slate-400 space-y-2">
                 <li>An AWS account (and permission to create EC2, RDS, and IAM roles).</li>
                 <li>A VPC with subnets to host the stack.</li>
-                <li>A DNS name for your dashboard (e.g. <code class="font-mono text-brand">enclavia.acme.com</code>).</li>
+                <li>A DNS name for your dashboard (e.g. <code class="font-mono text-brand">kavros.acme.com</code>).</li>
                 <li>Your agent workloads (or the repos that run them).</li>
             </ul>
         </div>
@@ -111,12 +111,12 @@ python -m pip install enclavia-agent</pre>
 
 <footer class="py-10 px-6 border-t border-slate-800">
     <div class="max-w-5xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
-        <p class="text-sm text-slate-500">© 2026 Enclavia OS. All rights reserved.</p>
+        <p class="text-sm text-slate-500">© 2026 Kavros OS. All rights reserved.</p>
         <div class="flex gap-6 text-sm">
             <a href="deployment.html" class="text-slate-500 hover:text-white">Deployment</a>
             <a href="agent.html" class="text-slate-500 hover:text-white">Agent Integration</a>
             <a href="integrations.html" class="text-slate-500 hover:text-white">Developer</a>
-            <a href="https://www.enclavia.xyz" class="text-slate-500 hover:text-white">enclavia.xyz</a>
+            <a href="https://kavros.ai" class="text-slate-500 hover:text-white">kavros.xyz</a>
         </div>
     </div>
 </footer>
