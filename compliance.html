@@ -52,13 +52,20 @@
             <li>Filterable, searchable, paginated audit exports (JSON or CSV) with actor, action, timestamp, and chain hash —</li>
             <li>policy approval timelines with proposer and approver identities,</li>
             <li>incident timelines from creation through resolution,</li>
-            <li>enclave attestation records for protected actions.</li>
+            <li>enclave attestation records for protected actions,</li>
+            <li>the release measurement registry: each deployment's enclave measurement, its approval record, and the exact measurement the runtime pins,</li>
+            <li>model-coverage evidence — which governed surface sent each observed provider request, and the gaps Kavros explicitly did not observe.</li>
         </ul>
     </section>
 
 <section class="mb-12">
+        <h2 class="text-xl font-bold text-white mb-4">Provable release provenance</h2>
+        <p class="text-sm text-slate-400 mb-4">Every release ships a signed manifest, SBOM, and build provenance. The enclave image is rebuilt on the customer's Nitro host at deploy time, its measurement is registered and approved (automatically when it matches the runtime's own pin, reviewed by an administrator otherwise), and on-path receipt appraisal refuses any request whose attestation quote does not chain to the AWS Nitro root and match the approved measurement. Coverage, not vibes: the evidence chain runs from signed release, to approved measurement, to per-request enclave receipt.</p>
+    </section>
+
+<section class="mb-12">
         <h2 class="text-xl font-bold text-white mb-4">Framework evidence packs</h2>
-        <p class="text-sm text-slate-400 mb-4">Evidence packs assemble the artifacts a control framework asks for — access reviews, change approvals, incident handling, data-protection checks — from the records the platform already produces. They speed the conversation with your auditor; they do not, by themselves, make you compliant — the honest boundary, stated up front.</p>
+        <p class="text-sm text-slate-400 mb-4">Evidence packs assemble the artifacts a control framework asks for — access reviews, change approvals, incident handling, data-protection checks — from the records the platform already produces. They speed the conversation with your auditor; they do not, by themselves, make you compliant — the honest boundary, stated up front. The same honesty applies to coverage: model-coverage counts what the enclave path observed and says so; it is not a claim that no request ever bypassed Kavros.</p>
     </section>
 
 <section class="mb-12">
