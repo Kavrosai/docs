@@ -8,71 +8,71 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = { theme: { extend: {
-            colors: { brand: '#3b82f6', darkbg: '#020617', darkcard: '#0f172a' },
+            colors: { brand: '#3b82f6', page: '#f8fafc', card: '#ffffff' },
             fontFamily: { sans: ['Inter', 'sans-serif'], mono: ['Menlo', 'monospace'] }
         } } }
     </script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet">
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%233b82f6' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z'></path></svg>">
+    <link rel="icon" type="image/svg+xml" href="/assets/logo.svg">
 </head>
-<body class="bg-darkbg text-slate-300 font-sans antialiased">
+<body class="bg-page text-slate-600 font-sans antialiased">
 
-<nav class="sticky top-0 bg-darkbg/80 backdrop-blur-md z-50 border-b border-slate-800">
+<nav class="sticky top-0 bg-white/80 backdrop-blur-md z-50 border-b border-slate-200">
     <div class="max-w-5xl mx-auto px-6 py-4 flex items-center justify-between">
-        <a href="index.html" class="flex items-center gap-2 text-lg font-bold text-white">
+        <a href="index.html" class="flex items-center gap-2 text-lg font-bold text-slate-900">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-brand" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
             Kavros <span class="text-brand font-mono text-xs font-normal">Docs</span>
         </a>
         <div class="flex items-center gap-4 text-sm flex-wrap">
-            <a href="index.html" class="hover:text-white">Getting Started</a>
-            <a href="workflows.html" class="hover:text-white">Workflows</a>
-            <a href="chat.html" class="hover:text-white">Chat</a>
-            <a href="policies.html" class="hover:text-white">Policies</a>
-            <a href="compliance.html" class="hover:text-white">Compliance</a>
-            <a href="deployment.html" class="hover:text-white">Deployment</a>
-            <a href="agent.html" class="hover:text-white">Agents</a>
-            <a href="integrations.html" class="hover:text-white">Developer</a>
-            <a href="https://kavros.ai" class="text-slate-500 hover:text-white">kavros.ai ↗</a>
+            <a href="index.html" class="hover:text-slate-900">Getting Started</a>
+            <a href="workflows.html" class="hover:text-slate-900">Workflows</a>
+            <a href="chat.html" class="hover:text-slate-900">Chat</a>
+            <a href="policies.html" class="hover:text-slate-900">Policies</a>
+            <a href="compliance.html" class="hover:text-slate-900">Compliance</a>
+            <a href="deployment.html" class="hover:text-slate-900">Deployment</a>
+            <a href="agent.html" class="hover:text-slate-900">Agents</a>
+            <a href="integrations.html" class="hover:text-slate-900">Developer</a>
+            <a href="https://kavros.ai" class="text-slate-500 hover:text-slate-900">kavros.ai ↗</a>
         </div>
     </div>
 </nav>
 
-<header class="py-20 px-6 text-center border-b border-slate-800">
-    <span class="inline-block bg-slate-800 text-brand text-xs font-mono px-3 py-1 rounded-full mb-6 border border-slate-700">Self-hosted · Your VPC</span>
-    <h1 class="text-4xl md:text-5xl font-extrabold text-white mb-4">Run Kavros in your VPC</h1>
-    <p class="text-lg text-slate-400 max-w-2xl mx-auto">Hardware-enforced egress security for your AI agents. The entire stack runs inside your AWS account — and your agents need <strong class="text-white">no code changes</strong>.</p>
+<header class="py-20 px-6 text-center border-b border-slate-200">
+    <span class="inline-block bg-slate-100 text-brand text-xs font-mono px-3 py-1 rounded-full mb-6 border border-slate-300">Self-hosted · Your VPC</span>
+    <h1 class="text-4xl md:text-5xl font-extrabold text-slate-900 mb-4">Run Kavros in your VPC</h1>
+    <p class="text-lg text-slate-500 max-w-2xl mx-auto">Hardware-enforced egress security for your AI agents. The entire stack runs inside your AWS account — and your agents need <strong class="text-slate-900">no code changes</strong>.</p>
 </header>
 
 <main class="max-w-5xl mx-auto px-6 py-16">
 
     <section class="mb-16">
-        <h2 class="text-2xl font-bold text-white mb-6">Minimum changes to go live</h2>
+        <h2 class="text-2xl font-bold text-slate-900 mb-6">Minimum changes to go live</h2>
         <div class="grid md:grid-cols-3 gap-6">
-            <div class="bg-darkcard p-6 rounded-xl border border-slate-800">
+            <div class="bg-card p-6 rounded-xl border border-slate-200">
                 <div class="text-brand font-mono text-xs mb-3">1 · One-time</div>
-                <h3 class="font-bold text-white mb-2">Provision the stack</h3>
-                <p class="text-sm text-slate-400">Provide your AWS VPC and a few values. One <code class="font-mono text-brand">terraform apply</code> provisions the control plane, data plane, and enclave in your account.</p>
+                <h3 class="font-bold text-slate-900 mb-2">Provision the stack</h3>
+                <p class="text-sm text-slate-500">Provide your AWS VPC and a few values. One <code class="font-mono text-brand">terraform apply</code> provisions the control plane, data plane, and enclave in your account.</p>
                 <a href="deployment.html" class="inline-block mt-4 text-sm text-brand hover:underline">Deployment guide →</a>
             </div>
-            <div class="bg-darkcard p-6 rounded-xl border border-slate-800">
+            <div class="bg-card p-6 rounded-xl border border-slate-200">
                 <div class="text-brand font-mono text-xs mb-3">2 · Per agent</div>
-                <h3 class="font-bold text-white mb-2">Choose an integration</h3>
-                <p class="text-sm text-slate-400">Use <code class="font-mono text-brand">@kavrosai/cli</code> for scripts, the JSON HTTP contract from any language, or the optional Python hook for zero-code interception.</p>
+                <h3 class="font-bold text-slate-900 mb-2">Choose an integration</h3>
+                <p class="text-sm text-slate-500">Use <code class="font-mono text-brand">@kavrosai/cli</code> for scripts, the JSON HTTP contract from any language, or the optional Python hook for zero-code interception.</p>
                 <a href="agent.html" class="inline-block mt-4 text-sm text-brand hover:underline">Agent integration →</a>
                 <a href="integrations.html" class="inline-block mt-4 text-sm text-brand hover:underline">Developer integrations →</a>
             </div>
-            <div class="bg-darkcard p-6 rounded-xl border border-slate-800">
+            <div class="bg-card p-6 rounded-xl border border-slate-200">
                 <div class="text-brand font-mono text-xs mb-3">3 · Optional</div>
-                <h3 class="font-bold text-white mb-2">Add your LLM key</h3>
-                <p class="text-sm text-slate-400">For employee chat, add your Anthropic or OpenAI key in the dashboard under Teams → LLM Provider (BYOK). It is encrypted at rest.</p>
+                <h3 class="font-bold text-slate-900 mb-2">Add your LLM key</h3>
+                <p class="text-sm text-slate-500">For employee chat, add your Anthropic or OpenAI key in the dashboard under Teams → LLM Provider (BYOK). It is encrypted at rest.</p>
             </div>
         </div>
     </section>
 
     <section class="mb-16">
-        <h2 class="text-2xl font-bold text-white mb-6">The quick version</h2>
-        <div class="bg-darkcard rounded-xl border border-slate-800 overflow-x-auto">
-<pre class="p-6 text-sm font-mono text-slate-300"><span class="text-slate-500"># 1. Provision (AWS VPC + a few values)</span>
+        <h2 class="text-2xl font-bold text-slate-900 mb-6">The quick version</h2>
+        <div class="bg-card rounded-xl border border-slate-200 overflow-x-auto">
+<pre class="p-6 text-sm font-mono text-slate-600"><span class="text-slate-500"># 1. Provision (AWS VPC + a few values)</span>
 terraform apply
 
 <span class="text-slate-500"># 2. Configure workload credentials</span>
@@ -90,18 +90,18 @@ python -m pip install kavros-agent</pre>
     </section>
 
     <section class="grid md:grid-cols-2 gap-6">
-        <div class="bg-darkcard p-6 rounded-xl border border-slate-800">
-            <h3 class="font-bold text-white mb-2">What we need from you</h3>
-            <ul class="list-disc list-inside text-sm text-slate-400 space-y-2">
+        <div class="bg-card p-6 rounded-xl border border-slate-200">
+            <h3 class="font-bold text-slate-900 mb-2">What we need from you</h3>
+            <ul class="list-disc list-inside text-sm text-slate-500 space-y-2">
                 <li>An AWS account (and permission to create EC2, RDS, and IAM roles).</li>
                 <li>A VPC with subnets to host the stack.</li>
                 <li>A DNS name for your dashboard (e.g. <code class="font-mono text-brand">kavros.acme.com</code>).</li>
                 <li>Your agent workloads (or the repos that run them).</li>
             </ul>
         </div>
-        <div class="bg-darkcard p-6 rounded-xl border border-slate-800">
-            <h3 class="font-bold text-white mb-2">What you get</h3>
-            <ul class="list-disc list-inside text-sm text-slate-400 space-y-2">
+        <div class="bg-card p-6 rounded-xl border border-slate-200">
+            <h3 class="font-bold text-slate-900 mb-2">What you get</h3>
+            <ul class="list-disc list-inside text-sm text-slate-500 space-y-2">
                 <li>Control plane + data plane + AWS Nitro Enclave, in your VPC.</li>
                 <li>Allowlist &amp; DLP enforcement with NSM attestation on every decision.</li>
                 <li>Audit logs, compliance evidence exports, usage metering, and model routing.</li>
@@ -112,14 +112,14 @@ python -m pip install kavros-agent</pre>
 
 </main>
 
-<footer class="py-10 px-6 border-t border-slate-800">
+<footer class="py-10 px-6 border-t border-slate-200">
     <div class="max-w-5xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
         <p class="text-sm text-slate-500">© 2026 Kavros. All rights reserved.</p>
         <div class="flex gap-6 text-sm">
-            <a href="index.html" class="text-slate-500 hover:text-white">Getting Started</a>
-            <a href="workflows.html" class="text-slate-500 hover:text-white">Workflows</a>
-            <a href="policies.html" class="text-slate-500 hover:text-white">Policies</a>
-            <a href="compliance.html" class="text-slate-500 hover:text-white">Compliance</a>
+            <a href="index.html" class="text-slate-500 hover:text-slate-900">Getting Started</a>
+            <a href="workflows.html" class="text-slate-500 hover:text-slate-900">Workflows</a>
+            <a href="policies.html" class="text-slate-500 hover:text-slate-900">Policies</a>
+            <a href="compliance.html" class="text-slate-500 hover:text-slate-900">Compliance</a>
         </div>
     </div>
 </footer>

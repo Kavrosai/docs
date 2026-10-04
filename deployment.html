@@ -8,43 +8,43 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = { theme: { extend: {
-            colors: { brand: '#3b82f6', darkbg: '#020617', darkcard: '#0f172a' },
+            colors: { brand: '#3b82f6', page: '#f8fafc', card: '#ffffff' },
             fontFamily: { sans: ['Inter', 'sans-serif'], mono: ['Menlo', 'monospace'] }
         } } }
     </script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%233b82f6' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z'></path></svg>">
 </head>
-<body class="bg-darkbg text-slate-300 font-sans antialiased">
+<body class="bg-page text-slate-600 font-sans antialiased">
 
-<nav class="sticky top-0 bg-darkbg/80 backdrop-blur-md z-50 border-b border-slate-800">
+<nav class="sticky top-0 bg-white/80 backdrop-blur-md z-50 border-b border-slate-200">
     <div class="max-w-5xl mx-auto px-6 py-4 flex items-center justify-between">
-        <a href="index.html" class="flex items-center gap-2 text-lg font-bold text-white">
+        <a href="index.html" class="flex items-center gap-2 text-lg font-bold text-slate-900">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-brand" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
             Kavros <span class="text-brand font-mono text-xs font-normal">Docs</span>
         </a>
         <div class="flex items-center gap-4 text-sm flex-wrap">
-            <a href="index.html" class="hover:text-white">Getting Started</a>
-            <a href="workflows.html" class="hover:text-white">Workflows</a>
-            <a href="chat.html" class="hover:text-white">Chat</a>
-            <a href="policies.html" class="hover:text-white">Policies</a>
-            <a href="compliance.html" class="hover:text-white">Compliance</a>
-            <a href="deployment.html" class="hover:text-white">Deployment</a>
-            <a href="agent.html" class="hover:text-white">Agents</a>
-            <a href="integrations.html" class="hover:text-white">Developer</a>
-            <a href="https://kavros.ai" class="text-slate-500 hover:text-white">kavros.ai ↗</a>
+            <a href="index.html" class="hover:text-slate-900">Getting Started</a>
+            <a href="workflows.html" class="hover:text-slate-900">Workflows</a>
+            <a href="chat.html" class="hover:text-slate-900">Chat</a>
+            <a href="policies.html" class="hover:text-slate-900">Policies</a>
+            <a href="compliance.html" class="hover:text-slate-900">Compliance</a>
+            <a href="deployment.html" class="hover:text-slate-900">Deployment</a>
+            <a href="agent.html" class="hover:text-slate-900">Agents</a>
+            <a href="integrations.html" class="hover:text-slate-900">Developer</a>
+            <a href="https://kavros.ai" class="text-slate-500 hover:text-slate-900">kavros.ai ↗</a>
         </div>
     </div>
 </nav>
 
 <main class="max-w-4xl mx-auto px-6 py-16">
 
-    <h1 class="text-3xl md:text-4xl font-extrabold text-white mb-4">Deploy in your VPC</h1>
-    <p class="text-slate-400 mb-10">The control plane and data plane both run in your AWS account. Raw data never leaves your VPC.</p>
+    <h1 class="text-3xl md:text-4xl font-extrabold text-slate-900 mb-4">Deploy in your VPC</h1>
+    <p class="text-slate-500 mb-10">The control plane and data plane both run in your AWS account. Raw data never leaves your VPC.</p>
 
     <section class="mb-12">
-        <h2 class="text-xl font-bold text-white mb-4">1 · Prerequisites</h2>
-        <ul class="list-disc list-inside text-sm text-slate-400 space-y-2">
+        <h2 class="text-xl font-bold text-slate-900 mb-4">1 · Prerequisites</h2>
+        <ul class="list-disc list-inside text-sm text-slate-500 space-y-2">
             <li>An AWS account with permission to create EC2, RDS, and IAM roles.</li>
             <li>A VPC with subnets for the control plane, data plane, and database.</li>
             <li><code class="font-mono text-brand">terraform</code> ≥ 1.5 and AWS credentials.</li>
@@ -54,10 +54,10 @@
     </section>
 
     <section class="mb-12">
-        <h2 class="text-xl font-bold text-white mb-4">2 · Provision with Terraform</h2>
-        <p class="text-sm text-slate-400 mb-4">The Kavros Terraform module provisions RDS, the control plane host, the Nitro data plane host, security groups, and IAM. Fill in the required inputs and apply.</p>
-        <div class="bg-darkcard rounded-xl border border-slate-800 overflow-x-auto">
-<pre class="p-6 text-sm font-mono text-slate-300">module "kavros" {
+        <h2 class="text-xl font-bold text-slate-900 mb-4">2 · Provision with Terraform</h2>
+        <p class="text-sm text-slate-500 mb-4">The Kavros Terraform module provisions RDS, the control plane host, the Nitro data plane host, security groups, and IAM. Fill in the required inputs and apply.</p>
+        <div class="bg-card rounded-xl border border-slate-200 overflow-x-auto">
+<pre class="p-6 text-sm font-mono text-slate-600">module "kavros" {
   source = "./terraform/kavros"
 
   region                  = "us-east-1"
@@ -80,23 +80,23 @@
     </section>
 
     <section class="mb-12">
-        <h2 class="text-xl font-bold text-white mb-4">3 · Policy signing key (decide up front)</h2>
-        <p class="text-sm text-slate-400 mb-3">Runtime policy changes are only enforced when signed by an Ed25519 keypair. Choose one custody model before onboarding:</p>
+        <h2 class="text-xl font-bold text-slate-900 mb-4">3 · Policy signing key (decide up front)</h2>
+        <p class="text-sm text-slate-500 mb-3">Runtime policy changes are only enforced when signed by an Ed25519 keypair. Choose one custody model before onboarding:</p>
         <div class="grid md:grid-cols-2 gap-4">
-            <div class="bg-darkcard p-5 rounded-xl border border-slate-800">
-                <h3 class="font-bold text-white mb-1">Kavros-held (default)</h3>
-                <p class="text-xs text-slate-400">Kavros keeps the private key. Every policy change still requires an Kavros super-admin approval, preserving the "rogue insider cannot forge an allowlist" guarantee.</p>
+            <div class="bg-card p-5 rounded-xl border border-slate-200">
+                <h3 class="font-bold text-slate-900 mb-1">Kavros-held (default)</h3>
+                <p class="text-xs text-slate-500">Kavros keeps the private key. Every policy change still requires an Kavros super-admin approval, preserving the "rogue insider cannot forge an allowlist" guarantee.</p>
             </div>
-            <div class="bg-darkcard p-5 rounded-xl border border-slate-800">
-                <h3 class="font-bold text-white mb-1">Customer-held</h3>
-                <p class="text-xs text-slate-400">Your team holds the keypair and runs its own super admins. Full runtime autonomy, but your super admin can sign arbitrary allowlists.</p>
+            <div class="bg-card p-5 rounded-xl border border-slate-200">
+                <h3 class="font-bold text-slate-900 mb-1">Customer-held</h3>
+                <p class="text-xs text-slate-500">Your team holds the keypair and runs its own super admins. Full runtime autonomy, but your super admin can sign arbitrary allowlists.</p>
             </div>
         </div>
     </section>
 
     <section class="mb-12">
-        <h2 class="text-xl font-bold text-white mb-4">4 · Operations</h2>
-        <div class="space-y-4 text-sm text-slate-400">
+        <h2 class="text-xl font-bold text-slate-900 mb-4">4 · Operations</h2>
+        <div class="space-y-4 text-sm text-slate-500">
             <div>
                 <h3 class="font-semibold text-slate-200">Backups &amp; restore</h3>
                 <p>RDS automated backups are on. Test a restore quarterly: restore to a scratch instance and confirm the dashboard loads.</p>
@@ -122,14 +122,14 @@
 
 </main>
 
-<footer class="py-10 px-6 border-t border-slate-800">
+<footer class="py-10 px-6 border-t border-slate-200">
     <div class="max-w-4xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
         <p class="text-sm text-slate-500">© 2026 Kavros. All rights reserved.</p>
         <div class="flex gap-6 text-sm">
-            <a href="index.html" class="text-slate-500 hover:text-white">Getting Started</a>
-            <a href="workflows.html" class="text-slate-500 hover:text-white">Workflows</a>
-            <a href="policies.html" class="text-slate-500 hover:text-white">Policies</a>
-            <a href="compliance.html" class="text-slate-500 hover:text-white">Compliance</a>
+            <a href="index.html" class="text-slate-500 hover:text-slate-900">Getting Started</a>
+            <a href="workflows.html" class="text-slate-500 hover:text-slate-900">Workflows</a>
+            <a href="policies.html" class="text-slate-500 hover:text-slate-900">Policies</a>
+            <a href="compliance.html" class="text-slate-500 hover:text-slate-900">Compliance</a>
         </div>
     </div>
 </footer>
